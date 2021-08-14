@@ -115,18 +115,18 @@
                             <a-input allowClear placeholder="请输入 费率" v-model="record.rate" autocomplete="off" />
                         </template>
                     </a-table-column>
-                    <a-table-column title="最小金额" data-index="min_amount">
+                    <a-table-column title="最小金额" data-index="yuan_min_amount">
                         <template slot-scope="text, record">
                             <a-input-number style="width: 100%;" allowClear placeholder="请输入 最小金额"
-                                v-model="record.min_amount"
+                                v-model="record.yuan_min_amount"
                                 :formatter="value=> `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g,',')"
                                 autocomplete="off" />
                         </template>
                     </a-table-column>
-                    <a-table-column title="最大金额" data-index="max_amount">
+                    <a-table-column title="最大金额" data-index="yuan_max_amount">
                         <template slot-scope="text, record">
                             <a-input-number style="width: 100%;" allowClear placeholder="请输入 最大金额"
-                                v-model="record.max_amount"
+                                v-model="record.yuan_max_amount"
                                 :formatter="value=> `￥ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g,',')"
                                 autocomplete="off" />
                         </template>
@@ -277,6 +277,10 @@
                     if (!err) {
                         this.saving = true
                         const fields = this.form.getFieldsValue()
+                        for (const item of this.payTypeRate) {
+                            item.max_amount = item.yuan_max_amount
+                            item.min_amount = item.yuan_min_amount
+                        }
                         fields.pay_types = this.payTypeRate;
                         fields.role = this.roleId(fields.role);
                         // console.log(fields)
@@ -296,8 +300,8 @@
                     if (item.rate == null
                         || item.pay_type_id == null
                         // || item.weight == null
-                        || item.min_amount == null
-                        || item.max_amount == null) {
+                        || item.yuan_min_amount == null
+                        || item.yuan_max_amount == null) {
                         flag = false;
                     }
                 }
@@ -466,8 +470,8 @@
                             pay_type_id: null,
                             rate: null,
                             // weight: 0,
-                            min_amount: 0,
-                            max_amount: 99999
+                            yuan_min_amount: 0,
+                            yuan_max_amount: 99999
                         })
                         break;
                     }

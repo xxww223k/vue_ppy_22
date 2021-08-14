@@ -23,6 +23,10 @@
                     <a-tag v-show="row.record.other_party_number" color="cyan">{{ row.record.other_party_number }}
                     </a-tag>
                 </template>
+                <!-- 处理结果 -->
+                <template slot="result" slot-scope="row">
+                    <a-tag v-if="row.text">{{row.text}}</a-tag>
+                </template>
                 <!-- 类别 -->
                 <template slot="type" slot-scope="row">
                     <a-tag v-if="row.text == 1" color="green">入帐</a-tag>
@@ -65,6 +69,12 @@
             key: "type",
             title: "类别",
             scopedSlots: { customRender: "type" },
+        },
+        {
+            dataIndex: "result",
+            key: "result",
+            title: "处理结果",
+            scopedSlots: { customRender: "result" },
         },
         {
             dataIndex: "self",

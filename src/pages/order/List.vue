@@ -67,10 +67,12 @@
                 <!-- 状态 -->
                 <template slot="status" slot-scope="row">
                     <a-tag color="blue" v-if="row.text == '1'">新订单</a-tag>
-                    <a-tag color="green" v-else-if="row.text == '2'">已支付</a-tag>
-                    <a-tag v-else-if="row.text == '3'">已超时</a-tag>
-                    <a-tag color="green" v-else-if="row.text == '4'">已通知</a-tag>
-                    <a-tag color="red" v-else-if="row.text == '5'">拉单失败</a-tag>
+                    <a-tag color="green" v-if="row.text == '2'">已支付</a-tag>
+                    <a-tag v-if="row.text == '3'">已超时</a-tag>
+                    <a-tag color="green" v-if="row.text == '4'">已通知</a-tag>
+                    <a-tag color="red" v-if="row.text == '5'">拉单失败</a-tag>
+                    <a-tag color="red" v-if="row.text == '5'&& row.record.failed_reason">{{ row.record.failed_reason }}
+                    </a-tag>
                 </template>
                 <template slot="operation" slot-scope="row">
                     <a-button-group size="small">

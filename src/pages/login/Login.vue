@@ -89,11 +89,11 @@
                     sessionStorage.setItem('ui', user.id)
                     this.setPermissions(permissions)
                     setAuthorization({ token: res.data.data.access_token })
-                    this.$router.push('/dashboard')
                     // 路由配置
                     getRoutesConfig().then(res => {
                         const routesConfig = res.data.data
                         loadRoutes(routesConfig)
+                        this.$router.push('/dashboard')
                     })
                 }
             },

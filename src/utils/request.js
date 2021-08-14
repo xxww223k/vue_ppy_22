@@ -10,7 +10,7 @@ axios.defaults.xsrfHeaderName = xsrfHeaderName
 axios.defaults.xsrfCookieName = xsrfHeaderName
 axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest'
 axios.defaults.headers.common['Content-type'] = 'application/json'
-axios.defaults.headers.common['Content-Security-Policy'] = 'upgrade-insecure-requests'
+// axios.defaults.headers.common['Content-Security-Policy'] = 'upgrade-insecure-requests'
 
 // 认证类型
 const AUTH_TYPE = {
